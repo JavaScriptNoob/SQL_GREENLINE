@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Anstallda` (
   `eNamn` VARCHAR(45) NULL,
   `fNamn` VARCHAR(45) NULL,
   `Verksamhet-ID` VARCHAR(45) NULL,
-  PRIMARY KEY (`Anstalld-ID`, `Anstallda_Anstalld-ID`),
-  INDEX `fk_Anstallda_Anstallda1_idx` (`Anstallda_Anstalld-ID` ASC) VISIBLE,
+  PRIMARY KEY (`Anstalld-ID`),
+  INDEX `fk_Anstallda_Anstallda1_idx` (`Anstallda_Anstalld-ID` ASC),
   CONSTRAINT `fk_Anstallda_Anstallda1`
     FOREIGN KEY (`Anstallda_Anstalld-ID`)
     REFERENCES `mydb`.`Anstallda` (`Anstalld-ID`)
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Kund` (
   `OrgNr` VARCHAR(45) NULL,
   `Anstallda_Anstalld-ID` INT NULL,
   `Anstallda_Anstallda_Anstalld-ID` INT NULL,
-  PRIMARY KEY (`Kund-ID`, `Anstallda_Anstalld-ID`, `Anstallda_Anstallda_Anstalld-ID`),
+  PRIMARY KEY (`Kund-ID`),
   INDEX `fk_Kund_Anstallda1_idx` (`Anstallda_Anstalld-ID` ASC, `Anstallda_Anstallda_Anstalld-ID` ASC) VISIBLE,
   CONSTRAINT `fk_Kund_Anstallda1`
     FOREIGN KEY (`Anstallda_Anstalld-ID` , `Anstallda_Anstallda_Anstalld-ID`)
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`KundOrder` (
   `Status` VARCHAR(45) NULL,
   `kommentar` VARCHAR(45) NULL,
   `Kund_Kund-ID` INT NOT NULL,
-  PRIMARY KEY (`KundOrder-ID`, `Kund_Kund-ID`),
+  PRIMARY KEY (`KundOrder-ID`),
   INDEX `fk_KundOrder_Kund1_idx` (`Kund_Kund-ID` ASC) VISIBLE,
   CONSTRAINT `fk_KundOrder_Kund1`
     FOREIGN KEY (`Kund_Kund-ID`)
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Betalning` (
   `Kund_Kund-ID` INT NOT NULL,
   `BankNr` VARCHAR(45) NULL,
   `Betalning` VARCHAR(45) NULL,
-  PRIMARY KEY (`Kund-ID`, `Kund_Kund-ID`),
+  PRIMARY KEY (`Kund-ID`),
   INDEX `fk_Betalning_Kund_idx` (`Kund_Kund-ID` ASC) VISIBLE,
   CONSTRAINT `fk_Betalning_Kund`
     FOREIGN KEY (`Kund_Kund-ID`)
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Produkt` (
   `ProduktPris` VARCHAR(45) NULL,
   `ProduktAntal` VARCHAR(45) NULL,
   `Ravara_Ravara-ID` INT NOT NULL,
-  PRIMARY KEY (`Produkt-ID`, `Ravara_Ravara-ID`),
+  PRIMARY KEY (`Produkt-ID`),
   INDEX `fk_Produkt_Ravara1_idx` (`Ravara_Ravara-ID` ASC) VISIBLE,
   CONSTRAINT `fk_Produkt_Ravara1`
     FOREIGN KEY (`Ravara_Ravara-ID`)
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`OrderInfo` (
   `KundOrder_Order-ID` INT NOT NULL,
   `KundOrder_Kund_Kund-ID` INT NOT NULL,
   `Produkt_Produkt-ID` INT NOT NULL,
-  PRIMARY KEY (`Orderinfo-ID`, `KundOrder_Order-ID`, `KundOrder_Kund_Kund-ID`, `Produkt_Produkt-ID`),
+  PRIMARY KEY (`Orderinfo-ID`),
   INDEX `fk_OrderInfo_KundOrder1_idx` (`KundOrder_Order-ID` ASC, `KundOrder_Kund_Kund-ID` ASC) VISIBLE,
   INDEX `fk_OrderInfo_Produkt1_idx` (`Produkt_Produkt-ID` ASC) VISIBLE,
   CONSTRAINT `fk_OrderInfo_KundOrder1`
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Verksamhet` (
   `RavaraOrder_Inkop-ID` INT NOT NULL,
   `Anstallda_Anstalld-ID` INT NOT NULL,
   `Anstallda_Anstallda_Anstalld-ID` INT NOT NULL,
-  PRIMARY KEY (`Verksamhet-ID`, `RavaraOrder_Inkop-ID`, `Anstallda_Anstalld-ID`, `Anstallda_Anstallda_Anstalld-ID`),
+  PRIMARY KEY (`Verksamhet-ID`),
   INDEX `fk_Verksamhet_RavaraOrder1_idx` (`RavaraOrder_Inkop-ID` ASC) VISIBLE,
   INDEX `fk_Verksamhet_Anstallda1_idx` (`Anstallda_Anstalld-ID` ASC, `Anstallda_Anstallda_Anstalld-ID` ASC) VISIBLE,
   CONSTRAINT `fk_Verksamhet_RavaraOrder1`
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Inventering` (
   `Produkt_Produkt-ID` INT NOT NULL,
   `Produkt_Ravara_Ravara-ID` INT NOT NULL,
   `RavaraOrder_Inkop-ID` INT NOT NULL,
-  PRIMARY KEY (`Inventering-ID`, `Ravara_Ravara-ID`, `Produkt_Produkt-ID`, `Produkt_Ravara_Ravara-ID`, `RavaraOrder_Inkop-ID`),
+  PRIMARY KEY (`Inventering-ID`),
   INDEX `fk_Inventering_Ravara1_idx` (`Ravara_Ravara-ID` ASC) VISIBLE,
   INDEX `fk_Inventering_Produkt1_idx` (`Produkt_Produkt-ID` ASC, `Produkt_Ravara_Ravara-ID` ASC) VISIBLE,
   INDEX `fk_Inventering_RavaraOrder1_idx` (`RavaraOrder_Inkop-ID` ASC) VISIBLE,
